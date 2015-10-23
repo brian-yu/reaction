@@ -1,4 +1,4 @@
-package io.byu.login;
+package io.byu.reaction;
 
 import android.content.Intent;
 import android.os.Handler;

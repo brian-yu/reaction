@@ -1,4 +1,4 @@
-package io.byu.login;
+package io.byu.reaction;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,32 +35,57 @@ public class SignedInActivity extends AppCompatActivity {
 
         final TextView box = (TextView)findViewById(R.id.box);
         final TextView scores = (TextView)findViewById(R.id.scores);
+        final TextView scores2 = (TextView)findViewById(R.id.scores2);
         final TextView greet = (TextView)findViewById(R.id.greet);
 
-        greet.setText("Hello " + email + "! \nWhen the box turns green, press it as fast as you can!");
+        greet.setText("Hello " + email + "!");
 
-        final class Score {
-            private long time;
-            private String email;
-            public Score() {}
-            public Score(String email, long time) {
-                this.email = email;
-                this.time = time;
-            }
-            public long getTime() {
-                return time;
-            }
-            public String getEmail() {
-                return email;
-            }
-        }
+        ref.addChildEventListener(new ChildEventListener() {
+            TreeMap<String, Long> scoreMap = new TreeMap<>();
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                TreeMap<String, Long> newScore = dataSnapshot.getValue(TreeMap.class);
 
-//        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//            Score newScore = dataSnapshot.getValue(Score.class);
-////                System.out.println("Email: " + newScore.getEmail());
-////                System.out.println("Time: " + newScore.getTime());
-//            scores.setText("Most Recent Score:\n" + newScore.getEmail() + ": " + String.valueOf(newScore.getTime()));
-//        }
+//                System.out.println("Email: " + newScore.getEmail());
+//                System.out.println("Time: " + newScore.getTime());
+                Set temp = newScore.keySet();
+                Object[] lol = temp.toArray();
+                Object lol2 = lol[0];
+                String lol3 = lol2.toString().replace("@DOT@", ".");
+                scoreMap.put(lol3, newScore.get(lol2));
+
+                int l = 0;
+                String str = "";
+                String str2 = "";
+                for(Map.Entry<String,Long> entry : scoreMap.entrySet()) {
+                    String k = entry.getKey();
+                    String v = String.valueOf(entry.getValue());
+                    if(l < 3) {
+                        str += k + ": " + v + "\n";
+                    } else if(l < 6){
+                        str2 += k + ": " + v + "\n";
+                    } else {
+                        break;
+                    }
+                    l++;
+                }
+                scores.setText(str);
+                scores2.setText(str2);
+            }
+
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        });
 
         box.setOnClickListener(new View.OnClickListener() {
             Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
@@ -84,8 +109,9 @@ public class SignedInActivity extends AppCompatActivity {
                     box.setBackgroundColor(Color.parseColor("#e74c3c"));
                     box.setText("Wait...");
 
-
-                    handler.postDelayed(timer, 3000);
+                    Random r = new Random();
+                    int delay = r.nextInt(7000 - 250) + 250;
+                    handler.postDelayed(timer, delay);
 
 
                 } else if (count == 2 && canPress == true) {
@@ -95,8 +121,13 @@ public class SignedInActivity extends AppCompatActivity {
                     long time = stop - start;
 
                     box.setText(String.valueOf(time) + "ms\nTap again to restart.");
-                    Score score = new Score(email, time);
-                    ref.setValue(score);
+
+                    TreeMap<String, Long> s = new TreeMap<>();
+                    String newEmail = email.replace(".", "@DOT@");
+                    s.put(newEmail, time);
+
+
+                    ref.push().setValue(s);
 
                 } else if(count == 2 && canPress == false) {
                     box.setBackgroundColor(Color.parseColor("#e67e22"));
