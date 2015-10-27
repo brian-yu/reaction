@@ -35,7 +35,7 @@ public class SignedInActivity extends AppCompatActivity {
 
         final TextView box = (TextView)findViewById(R.id.box);
         final TextView scores = (TextView)findViewById(R.id.scores);
-        final TextView scores2 = (TextView)findViewById(R.id.scores2);
+        //final TextView scores2 = (TextView)findViewById(R.id.scores2);
         final TextView greet = (TextView)findViewById(R.id.greet);
 
         greet.setText("Hello " + email + "!");
@@ -60,17 +60,17 @@ public class SignedInActivity extends AppCompatActivity {
                 for(Map.Entry<String,Long> entry : scoreMap.entrySet()) {
                     String k = entry.getKey();
                     String v = String.valueOf(entry.getValue());
-                    if(l < 3) {
-                        str += k + ": " + v + "\n";
+                    if(l < 5) {
+                        str += k + ": " + v + " ms\n";
                     } else if(l < 6){
-                        str2 += k + ": " + v + "\n";
+                        str2 += k + ": " + v + " ms\n";
                     } else {
                         break;
                     }
                     l++;
                 }
                 scores.setText(str);
-                scores2.setText(str2);
+                //scores2.setText(str2);
             }
 
 
@@ -95,7 +95,7 @@ public class SignedInActivity extends AppCompatActivity {
             boolean canPress = false;
             Runnable timer = new Runnable() {
                 public void run() {
-                    // Actions to do after 10 seconds
+                    // Actions to do after delay
                     canPress = true;
                     box.setText("Go!");
                     box.setBackgroundColor(Color.parseColor("#2ecc71"));

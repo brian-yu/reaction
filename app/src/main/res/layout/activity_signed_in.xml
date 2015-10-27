@@ -47,19 +47,20 @@
         android:layout_below="@+id/leaderboard"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/box"
-        android:layout_toStartOf="@+id/greet" />
+        android:layout_toStartOf="@+id/greet"
+        android:layout_alignEnd="@+id/box" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Scores"
-        android:id="@+id/scores2"
-        android:layout_below="@+id/leaderboard"
-        android:gravity="center"
-        android:layout_alignBottom="@+id/scores"
-        android:layout_alignEnd="@+id/box"
-        android:layout_toEndOf="@+id/greet" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+        <!--android:text="Scores"-->
+        <!--android:id="@+id/scores2"-->
+        <!--android:layout_below="@+id/leaderboard"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_alignBottom="@+id/scores"-->
+        <!--android:layout_alignEnd="@+id/box"-->
+        <!--android:layout_toEndOf="@+id/greet" />-->
 
 
     <!--<Button-->
