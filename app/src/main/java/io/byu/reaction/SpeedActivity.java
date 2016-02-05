@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.ChildEventListener;
@@ -110,11 +109,6 @@ public class SpeedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 count++;
                 Log.i("button", String.valueOf(v.getId()));
-                if (v.getId() == R.id.restart) {
-                    count = 3;
-                    canPress = false;
-                    Log.i("reset", "reset");
-                }
                 if (count == 1) {
                     box.setBackgroundColor(Color.parseColor("#e74c3c"));
                     box.setText("Wait...");
