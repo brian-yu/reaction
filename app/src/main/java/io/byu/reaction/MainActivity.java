@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                                 toast.cancel();
                             }
                         }, 300);
-                        Intent intent = new Intent(MainActivity.this, SignedInActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                         intent.putExtra("email", email.getText().toString());
                         startActivity(intent);
 
