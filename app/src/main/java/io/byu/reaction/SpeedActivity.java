@@ -2,10 +2,9 @@ package io.byu.reaction;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.CountDownTimer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +20,6 @@ import com.firebase.client.FirebaseError;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.TreeMap;
 
 public class SpeedActivity extends AppCompatActivity {
@@ -156,7 +153,6 @@ public class SpeedActivity extends AppCompatActivity {
             Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
             int count = 0;
             int score;
-            Timer myTimer = new Timer();
             long start = System.currentTimeMillis();
             Handler handler = new Handler();
             boolean canPress = false;
@@ -196,7 +192,7 @@ public class SpeedActivity extends AppCompatActivity {
                         box.setText(String.valueOf(count - 2));
                     } else {
                         box.setBackgroundColor(Color.parseColor("#8e44ad"));
-                        box.setText("TIME'S UP \n Score:" + String.valueOf(score) + );
+                        box.setText("TIME'S UP \n Score:" + String.valueOf(score));
                     }
                     TreeMap<String, Long> s = new TreeMap<>();
                     //String newEmail = email.replace(".", "@DOT@");
