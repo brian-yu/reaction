@@ -14,7 +14,6 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,17 +27,19 @@
         </activity>
         <activity
             android:name=".SpeedActivity"
-            android:parentActivityName=".MenuActivity">
+            android:parentActivityName=".MenuActivity"
+            android:label="@string/title_activity_speed">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.byu.reaction.MenuActivity"/>
+                android:value="io.byu.reaction.MenuActivity" />
         </activity>
         <activity
             android:name=".MenuActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.byu.reaction.MainActivity"/>
+            android:label="@string/title_activity_menu">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login">
         </activity>
     </application>
 

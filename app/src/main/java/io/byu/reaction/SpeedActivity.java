@@ -1,6 +1,7 @@
 package io.byu.reaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,8 +30,14 @@ public class SpeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_speed);
         Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
 
-        Intent intent = getIntent();
-        final String email = intent.getStringExtra("email");
+        SharedPreferences storedEmail = getSharedPreferences("email", 0);
+        final String email = storedEmail.getString("email", "missing");
+        if (email == "missing") {
+            Intent intent = new Intent(SpeedActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         final TextView box = (TextView) findViewById(R.id.box);
         final TextView scores = (TextView) findViewById(R.id.scores);
         //final TextView scores2 = (TextView)findViewById(R.id.scores2);

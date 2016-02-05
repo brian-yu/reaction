@@ -13,11 +13,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:src="@drawable/finger"
+        android:src="@drawable/smallfinger"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="FineReact"
+        android:textSize="40dp"
+        android:id="@+id/appName"
+        android:layout_below="@+id/imageView"
+        android:layout_marginBottom="10dp"
+        android:layout_alignEnd="@+id/imageView" />
 
     <TextView
         android:gravity="center"
@@ -29,9 +40,9 @@
         android:background="#3498db"
         android:textColor="#ffffff"
         android:id="@+id/textView"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/appName"
         android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/imageView" />
 
     <TextView
         android:gravity="center"
@@ -45,7 +56,7 @@
         android:id="@+id/textView2"
         android:layout_below="@+id/textView"
         android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/imageView" />
     <TextView
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -57,6 +68,20 @@
         android:textColor="#ffffff"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="10dp"
+        android:layout_alignRight="@+id/imageView" />
+    <TextView
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Log Out"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:textSize="30dp"
+        android:background="#e74c3c"
+        android:textColor="#ffffff"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_marginBottom="10dp"
+        android:layout_alignRight="@+id/imageView" />
 
 </RelativeLayout>

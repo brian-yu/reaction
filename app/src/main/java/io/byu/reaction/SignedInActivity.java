@@ -1,6 +1,7 @@
 package io.byu.reaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -30,8 +31,13 @@ public class SignedInActivity extends AppCompatActivity {
         Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
         setContentView(R.layout.activity_signed_in);
 
-        Intent intent = getIntent();
-        final String email = intent.getStringExtra("email");
+        SharedPreferences storedEmail = getSharedPreferences("email", 0);
+        final String email = storedEmail.getString("email", "missing");
+        if (email == "missing") {
+            Intent intent = new Intent(SignedInActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         final TextView box = (TextView)findViewById(R.id.box);
         final TextView scores = (TextView)findViewById(R.id.scores);

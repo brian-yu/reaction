@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Reaction</string>
+    <string name="app_name">FineReact</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_signed_in">Reaction Tester</string>
+    <string name="title_activity_speed">Speed Tester</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_activity_login">Login</string>
 </resources>
