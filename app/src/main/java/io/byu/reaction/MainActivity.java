@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
+        Intent intent = new Intent(MainActivity.this, SpeedActivity.class);
+        startActivity(intent);
         final Button login = (Button)findViewById(R.id.login);
         final Button register = (Button)findViewById(R.id.register);
         final EditText email = (EditText)findViewById(R.id.email);
