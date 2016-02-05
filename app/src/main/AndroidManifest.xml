@@ -31,15 +31,16 @@
             android:parentActivityName=".MenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.byu.reaction.MenuActivity"/>
+                android:value="io.byu.reaction.MenuActivity" />
         </activity>
         <activity
             android:name=".MenuActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.byu.reaction.MainActivity"/>
+                android:value="io.byu.reaction.MainActivity" />
         </activity>
+        <activity android:name=".LeaderActivity"></activity>
     </application>
 
 </manifest>

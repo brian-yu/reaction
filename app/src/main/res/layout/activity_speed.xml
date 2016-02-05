@@ -44,10 +44,7 @@
         android:text="Scores"
         android:id="@+id/scores"
         android:gravity="center"
-        android:layout_below="@+id/leaderboard"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/box"
-        android:layout_toStartOf="@+id/greet"
+        android:layout_above="@+id/box"
         android:layout_alignEnd="@+id/box" />
 
     <!--<TextView-->
