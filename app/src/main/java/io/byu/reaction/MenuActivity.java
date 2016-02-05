@@ -45,9 +45,8 @@ public class MenuActivity extends AppCompatActivity {
         leaderboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MenuActivity.this, SignedInActivity.class);
-//                intent.putExtra("email", email);
-//                startActivity(intent);
+                Intent intent = new Intent(MenuActivity.this, LeaderActivity.class);
+                startActivity(intent);
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

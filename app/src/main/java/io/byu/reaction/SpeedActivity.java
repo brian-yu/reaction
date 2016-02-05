@@ -139,6 +139,7 @@ public class SpeedActivity extends AppCompatActivity {
                         String newEmail = email.replace(".", "@DOT@");
                         s.put(newEmail, score);
                         ref.push().setValue(s);
+                        canPress = false;
                     }
 
 
