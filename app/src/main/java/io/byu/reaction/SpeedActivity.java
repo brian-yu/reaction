@@ -28,6 +28,7 @@ public class SpeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed);
+        Firebase.setAndroidContext(this);
         Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores/speed");
 
         SharedPreferences storedEmail = getSharedPreferences("email", 0);
@@ -112,6 +113,13 @@ public class SpeedActivity extends AppCompatActivity {
                     start = System.currentTimeMillis();
                 }
             };
+            Runnable restart = new Runnable() {
+                @Override
+                public void run() {
+                    canPress = false;
+                    score = 0;
+                }
+            };
 
             public void onClick(View v) {
                 count++;
@@ -134,12 +142,14 @@ public class SpeedActivity extends AppCompatActivity {
                         box.setText(String.valueOf(count - 2));
                     } else {
                         box.setBackgroundColor(Color.parseColor("#8e44ad"));
-                        box.setText("Time's Up! \n Score:" + String.valueOf(score));
+                        box.setText("Time's Up! \n Score: " + String.valueOf(score) + "\nTap in 3 seconds to restart.");
                         TreeMap<String, Long> s = new TreeMap<>();
                         String newEmail = email.replace(".", "@DOT@");
                         s.put(newEmail, score);
                         ref.push().setValue(s);
-                        canPress = false;
+
+                        handler.postDelayed(restart, 3000);
+                        //canPress = false
                     }
 
 
