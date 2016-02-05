@@ -28,7 +28,7 @@ public class SpeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed);
-        Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
+        Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores/speed");
 
         SharedPreferences storedEmail = getSharedPreferences("email", 0);
         final String email = storedEmail.getString("email", "missing");
@@ -97,9 +97,9 @@ public class SpeedActivity extends AppCompatActivity {
             }
         });
         box.setOnClickListener(new View.OnClickListener() {
-            Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
+            Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores/speed");
             int count = 0;
-            int score;
+            long score = 0;
             long start = System.currentTimeMillis();
             Handler handler = new Handler();
             boolean canPress = false;
@@ -134,10 +134,10 @@ public class SpeedActivity extends AppCompatActivity {
                         box.setText(String.valueOf(count - 2));
                     } else {
                         box.setBackgroundColor(Color.parseColor("#8e44ad"));
-                        box.setText("TIME'S UP \n Score:" + String.valueOf(score));
+                        box.setText("Time's Up! \n Score:" + String.valueOf(score));
                         TreeMap<String, Long> s = new TreeMap<>();
                         String newEmail = email.replace(".", "@DOT@");
-                        s.put(newEmail, time);
+                        s.put(newEmail, score);
                         ref.push().setValue(s);
                     }
 

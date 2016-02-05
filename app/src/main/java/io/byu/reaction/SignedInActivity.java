@@ -28,7 +28,7 @@ public class SignedInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
+        Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores/reaction");
         setContentView(R.layout.activity_signed_in);
 
         SharedPreferences storedEmail = getSharedPreferences("email", 0);
@@ -94,7 +94,7 @@ public class SignedInActivity extends AppCompatActivity {
         });
 
         box.setOnClickListener(new View.OnClickListener() {
-            Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
+            Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores/reaction");
             int count =0;
             long start = System.currentTimeMillis();
             Handler handler = new Handler();
