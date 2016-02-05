@@ -32,7 +32,6 @@ public class SpeedActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
-        final Button restart = (Button) findViewById(R.id.restart);
         final TextView box = (TextView) findViewById(R.id.box);
         final TextView scores = (TextView) findViewById(R.id.scores);
         //final TextView scores2 = (TextView)findViewById(R.id.scores2);
@@ -62,9 +61,9 @@ public class SpeedActivity extends AppCompatActivity {
                     String k = entry.getKey();
                     String v = String.valueOf(entry.getValue());
                     if (l < 5) {
-                        str += k + ": " + v + " ms\n";
+                        str += k + ": " + v + " taps\n";
                     } else if (l < 6) {
-                        str2 += k + ": " + v + " ms\n";
+                        str2 += k + ": " + v + " taps\n";
                     } else {
                         break;
                     }
@@ -90,64 +89,6 @@ public class SpeedActivity extends AppCompatActivity {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
-        });
-        box.setOnClickListener(new View.OnClickListener() {
-            Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
-            int count = 0;
-            int score;
-            long start = System.currentTimeMillis();
-            Handler handler = new Handler();
-            boolean canPress = false;
-            Runnable timer = new Runnable() {
-                public void run() {
-                    // Actions to do after delay
-                    canPress = true;
-                    box.setText("Go!");
-                    box.setBackgroundColor(Color.parseColor("#2ecc71"));
-                    start = System.currentTimeMillis();
-                }
-            };
-
-            @Override
-            public void onClick(View v) {
-                count++;
-                if (count == 1) {
-                    box.setBackgroundColor(Color.parseColor("#e74c3c"));
-                    box.setText("Wait...");
-
-                    Random r = new Random();
-                    int delay = r.nextInt(7000 - 250) + 250;
-                    handler.postDelayed(timer, delay);
-
-
-                } else if (count >= 2 && canPress == true) {
-                    long stop = System.currentTimeMillis();
-                    long time = stop - start;
-                    long timers = 3000 - time;
-                    if (timers > 0) {
-                        score += 1;
-                        box.setText(String.valueOf(count - 2));
-                    } else {
-                        box.setBackgroundColor(Color.parseColor("#8e44ad"));
-                        box.setText("TIME'S UP \n Score:" + String.valueOf(score) + "\n Tap the restart button");
-                    }
-                    TreeMap<String, Long> s = new TreeMap<>();
-                    //String newEmail = email.replace(".", "@DOT@");
-                    //s.put(newEmail, time);
-                    //ref.push().setValue(s);
-
-                } else if (count == 2 && canPress == false) {
-                    box.setBackgroundColor(Color.parseColor("#e67e22"));
-                    box.setText("Whoops! False start. \n Tap restart.");
-                    handler.removeCallbacks(timer);
-                } else if (count >= 3 && canPress == false) {
-                    box.setBackgroundColor(Color.parseColor("#3498db"));
-                    box.setText("Tap to begin");
-                    canPress = false;
-                    count = 0;
-                }
-            }
-
         });
         box.setOnClickListener(new View.OnClickListener() {
             Firebase ref = new Firebase("https://loginandroid.firebaseio.com/scores");
@@ -193,11 +134,12 @@ public class SpeedActivity extends AppCompatActivity {
                     } else {
                         box.setBackgroundColor(Color.parseColor("#8e44ad"));
                         box.setText("TIME'S UP \n Score:" + String.valueOf(score));
+                        TreeMap<String, Long> s = new TreeMap<>();
+                        String newEmail = email.replace(".", "@DOT@");
+                        s.put(newEmail, time);
+                        ref.push().setValue(s);
                     }
-                    TreeMap<String, Long> s = new TreeMap<>();
-                    //String newEmail = email.replace(".", "@DOT@");
-                    //s.put(newEmail, time);
-                    //ref.push().setValue(s);
+
 
                 } else if (count == 2 && canPress == false) {
                     box.setBackgroundColor(Color.parseColor("#e67e22"));
